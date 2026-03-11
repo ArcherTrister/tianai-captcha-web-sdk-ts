@@ -1,8 +1,8 @@
-# 						(captcha-web-sdk) 
+# 						(x-captcha-web-sdk) 
 
-# [TIANAI-CAPTCHA](https://gitee.com/tianai/tianai-captcha)验证码前端SDK
+## 专门为.NET版[TIANAI-CAPTCHA](https://github.com/ArcherTrister/tianai-captcha-csharp)验证码提供的前端SDK
 
-## 专门为.NET版验证码提供的前端SDK
+## 原[TIANAI-CAPTCHA](https://gitee.com/tianai/tianai-captcha)验证码前端SDK
 
 ## TypeScript 支持
 
