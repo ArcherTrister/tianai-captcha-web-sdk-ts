@@ -1,0 +1,87 @@
+# ==============================
+# Node.js / npm
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+.pnp.cjs
+.pnp.loader.mjs
+
+# ==============================
+# Build outputs (Webpack + TS)
+# ==============================
+dist/
+build/
+out/
+lib/                 # 常见于 tsc --outDir lib/
+es/                  # 常见于 rollup/webpack 输出 ESM
+cjs/                 # 常见于输出 CommonJS
+types/               # 若你手动生成 types 目录（如 tsup），可忽略；否则建议提交 .d.ts
+*.js
+*.js.map
+*.d.ts              # ⚠️ 注意：通常应提交 .d.ts！见下方说明
+*.d.ts.map
+*.mjs
+*.cjs
+
+# ❗重要说明：
+# - 如果你的构建流程会生成 .d.ts（如 tsc 或 webpack + ts-loader + declaration: true），
+#   且你希望用户能获得类型提示，请 **提交 .d.ts 文件** → 所以这里 *不忽略* .d.ts。
+# - 但如果你只在 `dist/` 中生成 .d.ts，而 `dist/` 已被忽略，则需确保：
+#     a) 提交 dist/*.d.ts（即不要忽略 dist/ 下的 .d.ts），或
+#     b) 在 package.json 中指定 "types": "./dist/index.d.ts"
+# - 因此，更安全的做法是：**不全局忽略 `.d.ts`**，而是只忽略构建中间目录中的临时 .d.ts（如下）
+
+# → 更推荐的写法（精准忽略构建中间产物，保留最终发布的 .d.ts）：
+#   dist/**/*.d.ts      # ❌ 不要这样 —— 会忽略最终产物！
+#   正确做法：仅忽略 src/ 或 temp/ 中的临时 .d.ts（如果存在）
+#   所以我们改为：
+temp/
+tmp/
+*.tsbuildinfo
+
+# 如果你用 webpack + ts-loader 且未将 .d.ts 输出到 dist，可加：
+src/**/*.d.ts        # 仅忽略源码目录中意外生成的 .d.ts（正常不应有）
+
+# ==============================
+# Environment & secrets
+# ==============================
+.env*
+!.env.example
+
+# ==============================
+# IDE & OS
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Logs & cache
+# ==============================
+logs/
+*.log
+npm-cache/
+.cache/
+node_modules/.cache/
+
+# ==============================
+# Test & coverage
+# ==============================
+coverage/
+.nyc_output/
+jest.config.js
+test-results/
+
+# ==============================
+# Optional: ignore generated files in root (if any)
+# ==============================
+bundle.js
+main.js
+index.js
